@@ -1,12 +1,12 @@
-import pathlib
 import textwrap
 
 
 import google.generativeai as genai
 import json
 import xlsxwriter
+import os
+from dotenv import load_dotenv
 
-from IPython.display import display
 from IPython.display import Markdown
 
 
@@ -59,7 +59,8 @@ with open('test_data.json') as f:
   test_data= json.load(f)
 
 #Set up Gemini Model
-GOOGLE_API_KEY="AIzaSyB7AhQ4_n9MbHb96Sh8lW_cI3OIUsyTGuk"
+load_dotenv()
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
